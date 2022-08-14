@@ -1,11 +1,10 @@
-import { ranks } from "../Database/Ranks";
+import { perc,ranks } from "../Database/Ranks";
 
-export function getRank(perc){
-    for(var i = 0; i < ranks.length; i++){
-        if(perc >= ranks[i].marks[1]){
-            console.log(ranks[i].rank)
-            return ranks[i].rank
+export function getRank(p){
+    for(var i = 0; i < perc.length; i++){
+        if(p >= perc[i]){
+            return ranks[i]
         }
     }
-    return 60000
+    return 26500
 }

@@ -8,13 +8,15 @@ import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import { getCollege } from '../Functions/getCollege';
 import { getRank } from '../Functions/calculateRank';
+import { create } from '../Functions/createLocationList';
 
 class CollegePredictor extends Component {
     state = {
         city: 0,
         caste: 0,
         rank: null,
-        list: null
+        list: null,
+        locations: create()
     }
 
     handleChange = (event) => {
@@ -26,10 +28,12 @@ class CollegePredictor extends Component {
     }
 
     handleMarks = (event) => {
+        console.log(getRank(event.target.value))
         this.setState({ rank: getRank(event.target.value) })
     }
 
     handleSubmit = () => {
+        this.setState({list:null});
         if (this.state.rank && this.state.city && this.state.caste) {
             this.setState({ list: getCollege(parseInt(this.state.rank), this.state.city, this.state.caste) })
         }
@@ -60,8 +64,14 @@ class CollegePredictor extends Component {
                                     label="Select Your Home State"
                                     onChange={this.handleChange}
                                 >
-                                    <MenuItem value={"Delhi"}>Delhi</MenuItem>
-                                    <MenuItem value={"Mumbai"}>Mumbai</MenuItem>
+                                    {
+                                        this.state.locations&&
+                                        this.state.locations.map((item,index)=>{
+                                            return(
+                                                <MenuItem key={index} value={""+item}>{item}</MenuItem>
+                                            )
+                                        })
+                                    }
                                 </Select>
                             </FormControl>
                         </div>
@@ -109,7 +119,7 @@ class CollegePredictor extends Component {
                                             {index + 1}
                                         </div>
                                         <div style={{textAlign:"center"}} >
-                                            {item.name}
+                                            {item}
                                         </div>
                                         <div>
                                             {item.location}

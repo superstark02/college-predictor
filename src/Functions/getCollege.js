@@ -11,11 +11,12 @@ export function getCollege(rank,state,caste){
 
     var list = null
     for(var i = 0; i < colleges.length; i++){
-        if(rank <= colleges[i].rank[1]){
+        if(rank >= colleges[i].rank[1]){
             list = [...colleges[i].colleges]
             break
         }
     }
+    list = [...colleges[i-1].colleges]
 
     for(i = 0; i < list.length; i++){
         if(state === list[i].location){
