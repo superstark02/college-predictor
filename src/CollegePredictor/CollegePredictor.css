@@ -31,3 +31,18 @@
 .input-parent{
     margin: 20px 0px;
 }
+
+.list{
+    width: 500px;
+}
+
+.item{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.head{
+    font-weight: 700;
+    margin-top: 40px;
+}

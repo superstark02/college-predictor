@@ -1,7 +1,6 @@
 import { colleges } from "../Database/Colleges";
 
-function getCollege(rank,state,caste){
-    var list = []
+export function getCollege(rank,state,caste){
 
     if(caste === "SC/ST"){
         rank = Math.max(0,rank-10000)
@@ -10,15 +9,16 @@ function getCollege(rank,state,caste){
         rank = Math.max(0,rank-9000)
     }
 
+    var list = null
     for(var i = 0; i < colleges.length; i++){
         if(rank <= colleges[i].rank[1]){
-            list = colleges[i].colleges
+            list = [...colleges[i].colleges]
             break
         }
     }
 
-    for(var i = 0; i < list.length; i++){
-        if(state === lsit[i].location){
+    for(i = 0; i < list.length; i++){
+        if(state === list[i].location){
             list[i].rank-=100
         }
     }

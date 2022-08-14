@@ -34,7 +34,7 @@ export const colleges = [
         colleges: [
             {
                 name: "NIT Delhi",
-                rank: 6,
+                rank: 14,
                 location: "Delhi"
             },
             {

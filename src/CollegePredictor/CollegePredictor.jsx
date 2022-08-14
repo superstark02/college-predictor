@@ -6,28 +6,33 @@ import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
+import { getCollege } from '../Functions/getCollege';
+import { getRank } from '../Functions/calculateRank';
 
 class CollegePredictor extends Component {
     state = {
-        age: 0,
+        city: 0,
         caste: 0,
-        rank: null
+        rank: null,
+        list: null
     }
 
     handleChange = (event) => {
-        this.setState({ age: event.target.value.toString() })
+        this.setState({ city: event.target.value.toString() })
     }
 
     handleCaste = (event) => {
         this.setState({ caste: event.target.value.toString() })
     }
 
-    handleRank = (event) => {
-        this.setState({ rank: event.target.value.toString() })
+    handleMarks = (event) => {
+        this.setState({ rank: getRank(event.target.value) })
     }
 
     handleSubmit = () => {
-        
+        if (this.state.rank && this.state.city && this.state.caste) {
+            this.setState({ list: getCollege(parseInt(this.state.rank), this.state.city, this.state.caste) })
+        }
     }
 
     render() {
@@ -43,7 +48,7 @@ class CollegePredictor extends Component {
                         </div>
 
                         <div className='input-parent' >
-                            <TextField id="outlined-basic" label="JEE Main Paper 1 Category Rank (Overall Rank if GEN)" variant="outlined" className='input' />
+                            <TextField onChange={this.handleMarks} id="outlined-basic" label="JEE Main Paper 1 Marks" variant="outlined" className='input' />
                         </div>
                         <div className='input-parent' >
                             <FormControl fullWidth>
@@ -51,7 +56,7 @@ class CollegePredictor extends Component {
                                 <Select
                                     labelId="demo-simple-select-label"
                                     id="demo-simple-select"
-                                    value={this.state.age}
+                                    value={this.state.city}
                                     label="Select Your Home State"
                                     onChange={this.handleChange}
                                 >
@@ -77,8 +82,42 @@ class CollegePredictor extends Component {
                             </FormControl>
                         </div>
                         <div>
-                            <Button variant="contained">Submit</Button>
+                            <Button onClick={this.handleSubmit} variant="contained">Submit</Button>
                         </div>
+                    </div>
+                </div>
+
+                <div className='wrap' >
+                    <div className='list' >
+                        <div className='item head' >
+                            <div>
+                                No.
+                            </div>
+                            <div style={{textAlign:"center"}}  >
+                                College Name
+                            </div>
+                            <div>
+                                Location
+                            </div>
+                        </div>
+                        {
+                            this.state.list &&
+                            this.state.list.map((item, index) => {
+                                return (
+                                    <div key={index} className='item' >
+                                        <div>
+                                            {index + 1}
+                                        </div>
+                                        <div style={{textAlign:"center"}} >
+                                            {item.name}
+                                        </div>
+                                        <div>
+                                            {item.location}
+                                        </div>
+                                    </div>
+                                )
+                            })
+                        }
                     </div>
                 </div>
             </div>
