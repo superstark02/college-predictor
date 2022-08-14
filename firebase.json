@@ -1,0 +1,11 @@
+{
+  "hosting": {
+    "public": "build",
+    "site": "college-predicotr",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ]
+  }
+}
