@@ -21,4 +21,13 @@
 
 .title-1{
     text-align: center;
+    margin-bottom: 20px;
+}
+
+.input{
+    width: 100%;
+}
+
+.input-parent{
+    margin: 20px 0px;
 }
