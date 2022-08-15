@@ -9,6 +9,8 @@ import Select from '@mui/material/Select';
 import { getCollege } from '../Functions/getCollege';
 import { getRank } from '../Functions/calculateRank';
 import { create } from '../Functions/createLocationList';
+import AppBar from "../Components/AppBar"
+import BasicTable from '../Components/Table';
 
 class CollegePredictor extends Component {
     state = {
@@ -33,7 +35,7 @@ class CollegePredictor extends Component {
     }
 
     handleSubmit = () => {
-        this.setState({list:null});
+        this.setState({ list: null });
         if (this.state.rank && this.state.city && this.state.caste) {
             this.setState({ list: getCollege(parseInt(this.state.rank), this.state.city, this.state.caste) })
         }
@@ -42,10 +44,8 @@ class CollegePredictor extends Component {
     render() {
         return (
             <div>
-                <div className='title' >
-                    JEE Main 2022 College Predictor
-                </div>
-                <div className='wrap' >
+                <AppBar />
+                <div className='container' >
                     <div className='form' >
                         <div className='title-1' >
                             Enter JEE Main Paper 1 Exam Details
@@ -65,10 +65,10 @@ class CollegePredictor extends Component {
                                     onChange={this.handleChange}
                                 >
                                     {
-                                        this.state.locations&&
-                                        this.state.locations.map((item,index)=>{
-                                            return(
-                                                <MenuItem key={index} value={""+item}>{item}</MenuItem>
+                                        this.state.locations &&
+                                        this.state.locations.map((item, index) => {
+                                            return (
+                                                <MenuItem key={index} value={"" + item}>{item}</MenuItem>
                                             )
                                         })
                                     }
@@ -95,41 +95,23 @@ class CollegePredictor extends Component {
                             <Button onClick={this.handleSubmit} variant="contained">Submit</Button>
                         </div>
                     </div>
-                </div>
 
-                <div className='wrap' >
-                    <div className='list' >
-                        <div className='item head' >
-                            <div>
-                                No.
-                            </div>
-                            <div style={{textAlign:"center"}}  >
-                                College Name
-                            </div>
-                            <div>
-                                Location
-                            </div>
-                        </div>
+                    <div className='wrap' >
                         {
-                            this.state.list &&
-                            this.state.list.map((item, index) => {
-                                return (
-                                    <div key={index} className='item' >
-                                        <div>
-                                            {index + 1}
-                                        </div>
-                                        <div style={{textAlign:"center"}} >
-                                            {item}
-                                        </div>
-                                        <div>
-                                            {item.location}
-                                        </div>
-                                    </div>
-                                )
-                            })
+                            this.state.list?(
+                                <div className="list" >
+                                    <BasicTable data={this.state.list} />
+                                </div>
+                            ):(
+                                <div style={{height:"80vh", display:'flex', justifyContent:"center", alignItems:"center"}} >
+                                    Please Enter Data
+                                </div>
+                            )
                         }
                     </div>
                 </div>
+
+
             </div>
         );
     }

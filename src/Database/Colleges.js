@@ -197,7 +197,7 @@ export const colleges = [
         ]
     },
     {
-        rank: 15000,
+        rank: 15700,
         colleges: [
             "Guru Gobind Singh Indraprastha University",
             "Lovely Professional University",
