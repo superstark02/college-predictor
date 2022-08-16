@@ -82,7 +82,7 @@ export const colleges = [
             "National Institute of Technology Durgapur"
         ],
         location: [
-            "Rupnagar",
+            "Ropar",
             "Patna",
             "Nagpur",
             "New Delhi",
@@ -131,7 +131,6 @@ export const colleges = [
         ],
         location: [
             "Allahabad",
-            "Coimbatore",
             "Pune",
             "Chennai",
             "Jalandhar",

@@ -18,7 +18,7 @@ class CollegePredictor extends Component {
         caste: 0,
         rank: null,
         list: null,
-        locations: create()
+        locations: create().sort()
     }
 
     handleChange = (event) => {

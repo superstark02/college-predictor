@@ -23,17 +23,24 @@ export function getCollege(rank,state,caste){
     }
 
     //delete college and add in diff array
+    //console.log(loc.length,list.length)
     var temp = []
+    var deleted = []
     i = 0;
     while(i < list.length){
+        //console.log(loc[i],state)
         if(state === loc[i]){
             temp.push(list[i])
-            delete list[i];
+            deleted.push(i)
         }
         i++
     }
 
+    for(var i = deleted.length-1; i > -1;i--){
+        list.splice(deleted[i],1)
+    }
+
     temp = temp.concat(list)
-    console.log(temp)
+    //console.log(temp)
     return temp
 }
