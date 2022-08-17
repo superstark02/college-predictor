@@ -12,13 +12,15 @@ import { create } from '../Functions/createLocationList';
 import AppBar from "../Components/AppBar"
 import BasicTable from '../Components/Table';
 
+//98.9 for category
+
 class CollegePredictor extends Component {
     state = {
         city: 0,
         caste: 0,
         rank: null,
         list: null,
-        locations: create().sort()
+        locations: create()
     }
 
     handleChange = (event) => {

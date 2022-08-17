@@ -3,10 +3,10 @@ import { colleges } from "../Database/Colleges";
 export function getCollege(rank,state,caste){
 
     if(caste === "SC/ST"){
-        rank = Math.max(0,rank-10000)
+        rank = Math.max(1,rank-10000)
     }
     if(caste === "OBC"){
-        rank = Math.max(0,rank-5000)
+        rank = Math.max(1,rank-5000)
     }
 
     var list = null
@@ -23,17 +23,15 @@ export function getCollege(rank,state,caste){
     }
 
     //delete college and add in diff array
-    //console.log(loc.length,list.length)
     var temp = []
     var deleted = []
     i = 0;
     while(i < list.length){
-        //console.log(loc[i],state)
         if(state === loc[i]){
             temp.push(list[i])
             deleted.push(i)
         }
-        i++
+        i++;
     }
 
     for(var i = deleted.length-1; i > -1;i--){
@@ -41,6 +39,5 @@ export function getCollege(rank,state,caste){
     }
 
     temp = temp.concat(list)
-    //console.log(temp)
     return temp
 }
